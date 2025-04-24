@@ -22,3 +22,107 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## 🍹 Aplicación de Cocktails
+
+Una aplicación para gestionar y descubrir deliciosas recetas de cocktails.
+
+## 🚀 Instalación
+
+```bash
+$ npm install
+```
+
+## 🏃‍♂️ Ejecución
+
+```bash
+# desarrollo
+$ npm run start
+
+# modo desarrollo con recarga automática
+$ npm run start:dev
+
+# modo producción
+$ npm run start:prod
+```
+
+## 🧪 Pruebas
+
+```bash
+# pruebas unitarias
+$ npm run test
+
+# pruebas e2e
+$ npm run test:e2e
+
+# cobertura de pruebas
+$ npm run test:cov
+```
+
+## 🗄️ Base de Datos
+
+El proyecto utiliza PostgreSQL como base de datos principal. La configuración se realiza a través de variables de entorno:
+
+### 📋 Configuración de la Conexión
+
+```typescript
+TypeOrmModule.forRoot({
+  type: 'postgres',
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT),
+  database: process.env.DB_NAME,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  autoLoadEntities: true,
+  synchronize: true,
+})
+```
+
+### 🐳 Docker Compose
+
+El proyecto incluye un archivo `docker-compose.yaml` para facilitar la configuración de la base de datos:
+
+```yaml
+version: '3'
+services:
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    container_name: cocktailssb
+    volumes:
+      - ../postgres_data_cocktailssb:/var/lib/postgresql/data
+```
+
+Para iniciar la base de datos, ejecuta:
+
+```bash
+$ docker-compose up -d
+```
+
+## 📝 Variables de Entorno Requeridas
+
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=cocktails
+DB_USERNAME=postgres
+DB_PASSWORD=tu_contraseña
+```
+
+## 🛠️ Tecnologías
+
+- [NestJS](https://nestjs.com/) - Framework de Node.js
+- [TypeORM](https://typeorm.io/) - ORM para TypeScript y JavaScript
+- [PostgreSQL](https://www.postgresql.org/) - Base de datos relacional
+- [Docker](https://www.docker.com/) - Contenedorización
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia [MIT](LICENSE).
+
