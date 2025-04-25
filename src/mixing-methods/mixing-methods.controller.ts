@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { MixingMethodsService } from './mixing-methods.service';
 import { CreateMixingMethodDto } from './dto/create-mixing-method.dto';
 import { UpdateMixingMethodDto } from './dto/update-mixing-method.dto';
@@ -18,17 +18,17 @@ export class MixingMethodsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.mixingMethodsService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.mixingMethodsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMixingMethodDto: UpdateMixingMethodDto) {
-    return this.mixingMethodsService.update(+id, updateMixingMethodDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateMixingMethodDto: UpdateMixingMethodDto) {
+    return this.mixingMethodsService.update(id, updateMixingMethodDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.mixingMethodsService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.mixingMethodsService.remove(id);
   }
 }

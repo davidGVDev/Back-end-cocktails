@@ -12,15 +12,15 @@ export class DistillatesSpiritsService {
     return `This action returns all distillatesSpirits`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} distillatesSpirit`;
   }
 
-  update(id: number, updateDistillatesSpiritDto: UpdateDistillatesSpiritDto) {
+  update(id: string, updateDistillatesSpiritDto: UpdateDistillatesSpiritDto) {
     return `This action updates a #${id} distillatesSpirit`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} distillatesSpirit`;
   }
 }

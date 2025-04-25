@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { CocktailsService } from './cocktails.service';
 import { CreateCocktailDto } from './dto/create-cocktail.dto';
 import { UpdateCocktailDto } from './dto/update-cocktail.dto';
@@ -18,17 +18,17 @@ export class CocktailsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cocktailsService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.cocktailsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCocktailDto: UpdateCocktailDto) {
-    return this.cocktailsService.update(+id, updateCocktailDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateCocktailDto: UpdateCocktailDto) {
+    return this.cocktailsService.update(id, updateCocktailDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cocktailsService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.cocktailsService.remove(id);
   }
 }

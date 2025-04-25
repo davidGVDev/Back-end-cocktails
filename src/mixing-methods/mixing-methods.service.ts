@@ -12,15 +12,15 @@ export class MixingMethodsService {
     return `This action returns all mixingMethods`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} mixingMethod`;
   }
 
-  update(id: number, updateMixingMethodDto: UpdateMixingMethodDto) {
+  update(id: string, updateMixingMethodDto: UpdateMixingMethodDto) {
     return `This action updates a #${id} mixingMethod`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} mixingMethod`;
   }
 }

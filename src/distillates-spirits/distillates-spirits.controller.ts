@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { DistillatesSpiritsService } from './distillates-spirits.service';
 import { CreateDistillatesSpiritDto } from './dto/create-distillates-spirit.dto';
 import { UpdateDistillatesSpiritDto } from './dto/update-distillates-spirit.dto';
@@ -18,17 +18,17 @@ export class DistillatesSpiritsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.distillatesSpiritsService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.distillatesSpiritsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDistillatesSpiritDto: UpdateDistillatesSpiritDto) {
-    return this.distillatesSpiritsService.update(+id, updateDistillatesSpiritDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateDistillatesSpiritDto: UpdateDistillatesSpiritDto) {
+    return this.distillatesSpiritsService.update(id, updateDistillatesSpiritDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.distillatesSpiritsService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.distillatesSpiritsService.remove(id);
   }
 }

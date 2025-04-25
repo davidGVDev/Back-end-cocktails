@@ -12,15 +12,15 @@ export class GarnishTypesService {
     return `This action returns all garnishTypes`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} garnishType`;
   }
 
-  update(id: number, updateGarnishTypeDto: UpdateGarnishTypeDto) {
+  update(id: string, updateGarnishTypeDto: UpdateGarnishTypeDto) {
     return `This action updates a #${id} garnishType`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} garnishType`;
   }
 }

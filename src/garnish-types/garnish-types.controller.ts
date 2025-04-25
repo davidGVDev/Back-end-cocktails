@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { GarnishTypesService } from './garnish-types.service';
 import { CreateGarnishTypeDto } from './dto/create-garnish-type.dto';
 import { UpdateGarnishTypeDto } from './dto/update-garnish-type.dto';
@@ -18,17 +18,17 @@ export class GarnishTypesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.garnishTypesService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.garnishTypesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGarnishTypeDto: UpdateGarnishTypeDto) {
-    return this.garnishTypesService.update(+id, updateGarnishTypeDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateGarnishTypeDto: UpdateGarnishTypeDto) {
+    return this.garnishTypesService.update(id, updateGarnishTypeDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.garnishTypesService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.garnishTypesService.remove(id);
   }
 }

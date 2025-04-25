@@ -12,15 +12,15 @@ export class EquipmentsService {
     return `This action returns all equipments`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} equipment`;
   }
 
-  update(id: number, updateEquipmentDto: UpdateEquipmentDto) {
+  update(id: string, updateEquipmentDto: UpdateEquipmentDto) {
     return `This action updates a #${id} equipment`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} equipment`;
   }
 }

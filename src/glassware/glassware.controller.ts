@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { GlasswareService } from './glassware.service';
 import { CreateGlasswareDto } from './dto/create-glassware.dto';
 import { UpdateGlasswareDto } from './dto/update-glassware.dto';
@@ -18,17 +18,17 @@ export class GlasswareController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.glasswareService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.glasswareService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGlasswareDto: UpdateGlasswareDto) {
-    return this.glasswareService.update(+id, updateGlasswareDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateGlasswareDto: UpdateGlasswareDto) {
+    return this.glasswareService.update(id, updateGlasswareDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.glasswareService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.glasswareService.remove(id);
   }
 }

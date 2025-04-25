@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { IceTypesService } from './ice-types.service';
 import { CreateIceTypeDto } from './dto/create-ice-type.dto';
 import { UpdateIceTypeDto } from './dto/update-ice-type.dto';
@@ -18,17 +18,17 @@ export class IceTypesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.iceTypesService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.iceTypesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIceTypeDto: UpdateIceTypeDto) {
-    return this.iceTypesService.update(+id, updateIceTypeDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateIceTypeDto: UpdateIceTypeDto) {
+    return this.iceTypesService.update(id, updateIceTypeDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.iceTypesService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.iceTypesService.remove(id);
   }
 }

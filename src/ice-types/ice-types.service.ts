@@ -12,15 +12,15 @@ export class IceTypesService {
     return `This action returns all iceTypes`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} iceType`;
   }
 
-  update(id: number, updateIceTypeDto: UpdateIceTypeDto) {
+  update(id: string, updateIceTypeDto: UpdateIceTypeDto) {
     return `This action updates a #${id} iceType`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} iceType`;
   }
 }

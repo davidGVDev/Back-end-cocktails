@@ -12,15 +12,15 @@ export class GlasswareService {
     return `This action returns all glassware`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} glassware`;
   }
 
-  update(id: number, updateGlasswareDto: UpdateGlasswareDto) {
+  update(id: string, updateGlasswareDto: UpdateGlasswareDto) {
     return `This action updates a #${id} glassware`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} glassware`;
   }
 }
