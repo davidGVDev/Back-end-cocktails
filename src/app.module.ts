@@ -8,6 +8,7 @@ import { IceTypesModule } from './ice-types/ice-types.module';
 import { GarnishTypesModule } from './garnish-types/garnish-types.module';
 import { DistillatesSpiritsModule } from './distillates-spirits/distillates-spirits.module';
 import { CocktailsModule } from './cocktails/cocktails.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { CocktailsModule } from './cocktails/cocktails.module';
     GarnishTypesModule,
     DistillatesSpiritsModule,
     CocktailsModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
