@@ -60,6 +60,6 @@ export class CreateCocktailDto {
 
   @IsString()
   @IsOptional()
-  @IsUrl()
+  // @IsUrl()
   image?: string;
 }

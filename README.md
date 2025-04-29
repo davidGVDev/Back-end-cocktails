@@ -122,6 +122,66 @@ DB_PASSWORD=tu_contraseña
 - [PostgreSQL](https://www.postgresql.org/) - Base de datos relacional
 - [Docker](https://www.docker.com/) - Contenedorización
 
+## 📡 API Endpoints
+
+La API está disponible bajo el prefijo `/api`. Todos los endpoints devuelven respuestas en formato JSON.
+
+### 🍹 Cocktails
+
+- `GET /api/cocktails` - Obtener todos los cocktails
+- `GET /api/cocktails/:id` - Obtener un cocktail por ID
+- `POST /api/cocktails` - Crear un nuevo cocktail
+- `PATCH /api/cocktails/:id` - Actualizar un cocktail existente
+- `DELETE /api/cocktails/:id` - Eliminar un cocktail
+
+### 🥃 Distillates & Spirits
+
+- `GET /api/distillates-spirits` - Obtener todos los destilados y espirituosos
+- `GET /api/distillates-spirits/:id` - Obtener un destilado/espirituoso por ID
+- `POST /api/distillates-spirits` - Crear un nuevo destilado/espirituoso
+- `PATCH /api/distillates-spirits/:id` - Actualizar un destilado/espirituoso existente
+- `DELETE /api/distillates-spirits/:id` - Eliminar un destilado/espirituoso
+
+### 🥄 Equipments
+
+- `GET /api/equipments` - Obtener todos los equipamientos
+- `GET /api/equipments/:id` - Obtener un equipamiento por ID
+- `POST /api/equipments` - Crear un nuevo equipamiento
+- `PATCH /api/equipments/:id` - Actualizar un equipamiento existente
+- `DELETE /api/equipments/:id` - Eliminar un equipamiento
+
+### 🍸 Glassware
+
+- `GET /api/glassware` - Obtener todos los tipos de vasos
+- `GET /api/glassware/:id` - Obtener un tipo de vaso por ID
+- `POST /api/glassware` - Crear un nuevo tipo de vaso
+- `PATCH /api/glassware/:id` - Actualizar un tipo de vaso existente
+- `DELETE /api/glassware/:id` - Eliminar un tipo de vaso
+
+### 🧊 Ice Types
+
+- `GET /api/ice-types` - Obtener todos los tipos de hielo
+- `GET /api/ice-types/:id` - Obtener un tipo de hielo por ID
+- `POST /api/ice-types` - Crear un nuevo tipo de hielo
+- `PATCH /api/ice-types/:id` - Actualizar un tipo de hielo existente
+- `DELETE /api/ice-types/:id` - Eliminar un tipo de hielo
+
+### 🍒 Garnish Types
+
+- `GET /api/garnish-types` - Obtener todos los tipos de guarniciones
+- `GET /api/garnish-types/:id` - Obtener un tipo de guarnición por ID
+- `POST /api/garnish-types` - Crear un nuevo tipo de guarnición
+- `PATCH /api/garnish-types/:id` - Actualizar un tipo de guarnición existente
+- `DELETE /api/garnish-types/:id` - Eliminar un tipo de guarnición
+
+### 🥤 Mixing Methods
+
+- `GET /api/mixing-methods` - Obtener todos los métodos de mezcla
+- `GET /api/mixing-methods/:id` - Obtener un método de mezcla por ID
+- `POST /api/mixing-methods` - Crear un nuevo método de mezcla
+- `PATCH /api/mixing-methods/:id` - Actualizar un método de mezcla existente
+- `DELETE /api/mixing-methods/:id` - Eliminar un método de mezcla
+
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia [MIT](LICENSE).

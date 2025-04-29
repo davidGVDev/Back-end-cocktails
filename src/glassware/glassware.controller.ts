@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { GlasswareService } from './glassware.service';
 import { CreateGlasswareDto } from './dto/create-glassware.dto';
 import { UpdateGlasswareDto } from './dto/update-glassware.dto';
@@ -23,7 +32,10 @@ export class GlasswareController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateGlasswareDto: UpdateGlasswareDto) {
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateGlasswareDto: UpdateGlasswareDto,
+  ) {
     return this.glasswareService.update(id, updateGlasswareDto);
   }
 

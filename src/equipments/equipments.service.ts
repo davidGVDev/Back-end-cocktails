@@ -1,26 +1,62 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
 import { CreateEquipmentDto } from './dto/create-equipment.dto';
 import { UpdateEquipmentDto } from './dto/update-equipment.dto';
+import { Repository } from 'typeorm';
+import { Equipment } from './entities/equipment.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class EquipmentsService {
-  create(createEquipmentDto: CreateEquipmentDto) {
-    return 'This action adds a new equipment';
+  private readonly logger = new Logger('EquipmentsService');
+  constructor(
+    @InjectRepository(Equipment)
+    private readonly equipmentRepository: Repository<Equipment>,
+  ) {}
+
+  async create(createEquipmentDto: CreateEquipmentDto) {
+    try{
+      const equipment = this.equipmentRepository.create(createEquipmentDto);
+      await this.equipmentRepository.save(equipment);
+      return equipment;
+    } catch (error) {
+      this.handleDBExceptions(error); 
+    }
   }
 
   findAll() {
-    return `This action returns all equipments`;
+    return this.equipmentRepository.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} equipment`;
+  async findOne(id: string) {
+    const equipment = await this.equipmentRepository.findOneBy({ id });
+    if (!equipment) {
+      throw new NotFoundException(`Equipment with id ${id} not found`);
+    }
+    return equipment;
   }
 
-  update(id: string, updateEquipmentDto: UpdateEquipmentDto) {
-    return `This action updates a #${id} equipment`;
+  async update(id: string, updateEquipmentDto: UpdateEquipmentDto) {
+    const equipment = await this.findOne(id);
+    await this.equipmentRepository.update(id, updateEquipmentDto);
+    return {
+      ...equipment,
+      ...updateEquipmentDto,
+    };
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} equipment`;
+  async remove(id: string) {
+    const equipment = await this.findOne(id);
+    await this.equipmentRepository.remove(equipment);
+    return {
+      message: `Equipment with id ${id} removed`,
+    };
+  }
+
+  private handleDBExceptions(error: any) {
+    if (error.code === '23505') {
+      throw new BadRequestException(error.detail);
+    }
+    this.logger.error(error);
+    throw new InternalServerErrorException('Unexpected error, check server logs');
   }
 }

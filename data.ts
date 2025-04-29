@@ -11,18 +11,21 @@ export const selectOptions = [
 
 export const essentialEquipment = [
   {
+    value: "Cocktail shaker",
     name_english: "Cocktail shaker",
     name_spanish: "Coctelera",
     description_english: "A container for mixing and cooling drinks",
     description_spanish: "Recipiente para mezclar y enfriar bebidas",
   },
   {
+    value: "Mixing glass",
     name_english: "Mixing glass",
     name_spanish: "Vaso mezclador",
     description_english: "A glass container for mixing drinks",
     description_spanish: "Recipiente de vidrio para mezclar bebidas",
   },
   {
+    value: "Strainer",
     name_english: "Strainer",
     name_spanish: "Colador (o 'Filtro de coctel')",
     description_english:
@@ -31,6 +34,7 @@ export const essentialEquipment = [
       "Filtro para colar bebidas, separando sólidos de líquidos",
   },
   {
+    value: "Barspoon",
     name_english: "Barspoon",
     name_spanish: "Cuchara de bar",
     description_english: "A long spoon for mixing and layering drinks",
@@ -38,6 +42,7 @@ export const essentialEquipment = [
       "Cuchara larga para mezclar y preparar bebidas en capas",
   },
   {
+    value: "Jigger",
     name_english: "Jigger",
     name_spanish: "Medidor (o 'Jigger')",
     description_english:
@@ -46,6 +51,7 @@ export const essentialEquipment = [
       "Medidor de dos lados para ingredientes líquidos, normalmente en onzas (1oz = 30ml)",
   },
   {
+    value: "Muddler",
     name_english: "Muddler",
     name_spanish: "Mazo (o 'Machacador')",
     description_english:
@@ -54,18 +60,21 @@ export const essentialEquipment = [
       "Herramienta para machacar ingredientes sólidos (como frutas o hierbas)",
   },
   {
+    value: "Ice bucket",
     name_english: "Ice bucket",
     name_spanish: "Hielera (o 'Cubeta de hielo')",
     description_english: "Container for storing and serving ice",
     description_spanish: "Recipiente para almacenar y servir hielo",
   },
   {
+    value: "Citrus juicer",
     name_english: "Citrus juicer",
     name_spanish: "Exprimidor de cítricos",
     description_english: "Tool for extracting juice from citrus fruits",
     description_spanish: "Utensilio para extraer jugo de frutas cítricas",
   },
   {
+    value: "Speed pourer",
     name_english: "Speed pourer",
     name_spanish: "Vertedor rápido",
     description_english:
@@ -74,6 +83,7 @@ export const essentialEquipment = [
       "Accesorio para botellas que facilita el vertido controlado",
   },
   {
+    value: "Channel knife",
     name_english: "Channel knife",
     name_spanish: "Cuchillo canalador",
     description_english: "Tool for creating citrus twists and garnishes",
@@ -81,6 +91,7 @@ export const essentialEquipment = [
       "Cuchillo especial para hacer cortes decorativos en frutas",
   },
   {
+    value: "Hawthorne strainer",
     name_english: "Hawthorne strainer",
     name_spanish: "Colador Hawthorne",
     description_english:
@@ -88,12 +99,14 @@ export const essentialEquipment = [
     description_spanish: "Colador especial con muelle para cocteleras",
   },
   {
+    value: "Fine mesh strainer",
     name_english: "Fine mesh strainer",
     name_spanish: "Colador fino (o 'Chino')",
     description_english: "Ultra-fine strainer for removing small particles",
     description_spanish: "Colador muy fino para eliminar partículas pequeñas",
   },
   {
+    value: "Lewis bag",
     name_english: "Lewis bag",
     name_spanish: "Bolsa para hielo (o 'Bolsa Lewis')",
     description_english: "Canvas bag for crushing ice with a mallet",

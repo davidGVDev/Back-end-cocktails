@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseUUIDPipe,
+} from '@nestjs/common';
 import { MixingMethodsService } from './mixing-methods.service';
 import { CreateMixingMethodDto } from './dto/create-mixing-method.dto';
 import { UpdateMixingMethodDto } from './dto/update-mixing-method.dto';
@@ -23,7 +32,10 @@ export class MixingMethodsController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateMixingMethodDto: UpdateMixingMethodDto) {
+  update(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body() updateMixingMethodDto: UpdateMixingMethodDto,
+  ) {
     return this.mixingMethodsService.update(id, updateMixingMethodDto);
   }
 

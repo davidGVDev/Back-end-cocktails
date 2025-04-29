@@ -1,26 +1,66 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateGarnishTypeDto } from './dto/create-garnish-type.dto';
 import { UpdateGarnishTypeDto } from './dto/update-garnish-type.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { GarnishType } from './entities/garnish-type.entity';
+import { Repository } from 'typeorm';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class GarnishTypesService {
-  create(createGarnishTypeDto: CreateGarnishTypeDto) {
-    return 'This action adds a new garnishType';
+  private readonly logger = new Logger('GarnishTypesService');
+
+  constructor(
+    @InjectRepository(GarnishType)
+    private readonly garnishTypeRepository: Repository<GarnishType>,
+  ) {}
+
+  async create(createGarnishTypeDto: CreateGarnishTypeDto) {
+    try {
+      const garnishType = this.garnishTypeRepository.create(createGarnishTypeDto);
+      await this.garnishTypeRepository.save(garnishType);
+      return garnishType;
+    } catch (error) {
+      this.handleDBExceptions(error);
+    }
   }
 
   findAll() {
-    return `This action returns all garnishTypes`;
+    return this.garnishTypeRepository.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} garnishType`;
+  async findOne(id: string) {
+    const garnishType = await this.garnishTypeRepository.findOneBy({ id });
+    if (!garnishType) {
+      throw new NotFoundException(`Garnish type with id ${id} not found`);
+    }
+    return garnishType;
   }
 
-  update(id: string, updateGarnishTypeDto: UpdateGarnishTypeDto) {
-    return `This action updates a #${id} garnishType`;
+  async update(id: string, updateGarnishTypeDto: UpdateGarnishTypeDto) {
+    const garnishType = await this.findOne(id);
+    await this.garnishTypeRepository.update(id, updateGarnishTypeDto);
+    return {
+      ...garnishType,
+      ...updateGarnishTypeDto,
+    };
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} garnishType`;
+  async remove(id: string) {
+    const garnishType = await this.findOne(id);
+    await this.garnishTypeRepository.remove(garnishType);
+    return {
+      message: `Garnish type with id ${id} removed`,
+    };
+  }
+
+  private handleDBExceptions(error: any) {
+    if (error.code === '23505') {
+      throw new BadRequestException(error.detail);
+    }
+    this.logger.error(error);
+    throw new InternalServerErrorException(
+      'Unexpected error, check server logs',
+    );
   }
 }
