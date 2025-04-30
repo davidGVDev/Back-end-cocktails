@@ -8,5 +8,6 @@ import { Glassware } from './entities/glassware.entity';
   controllers: [GlasswareController],
   providers: [GlasswareService],
   imports: [TypeOrmModule.forFeature([Glassware])],
+  exports: [GlasswareService],
 })
 export class GlasswareModule {}

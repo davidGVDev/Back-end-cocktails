@@ -182,6 +182,13 @@ La API está disponible bajo el prefijo `/api`. Todos los endpoints devuelven re
 - `PATCH /api/mixing-methods/:id` - Actualizar un método de mezcla existente
 - `DELETE /api/mixing-methods/:id` - Eliminar un método de mezcla
 
+### 🌱 Seed Data
+
+- `POST /api/common/seed` - Cargar datos iniciales en la base de datos
+  - Este endpoint carga datos predefinidos para todas las entidades del sistema
+  - Útil para inicializar la base de datos con datos de ejemplo
+  - Solo debe ejecutarse el metodo post con el la tabla en el body
+
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia [MIT](LICENSE).

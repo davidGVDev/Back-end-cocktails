@@ -8,5 +8,6 @@ import { DistillatesSpirit } from './entities/distillates-spirit.entity';
   controllers: [DistillatesSpiritsController],
   providers: [DistillatesSpiritsService],
   imports: [TypeOrmModule.forFeature([DistillatesSpirit])],
+  exports: [DistillatesSpiritsService],
 })
 export class DistillatesSpiritsModule {}

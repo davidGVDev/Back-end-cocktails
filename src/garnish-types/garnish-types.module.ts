@@ -8,5 +8,6 @@ import { GarnishType } from './entities/garnish-type.entity';
   controllers: [GarnishTypesController],
   providers: [GarnishTypesService],
   imports: [TypeOrmModule.forFeature([GarnishType])],
+  exports: [GarnishTypesService],
 })
 export class GarnishTypesModule {}

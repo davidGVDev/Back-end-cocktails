@@ -8,5 +8,6 @@ import { IceType } from './entities/ice-type.entity';
   controllers: [IceTypesController],
   providers: [IceTypesService],
   imports: [TypeOrmModule.forFeature([IceType])],
+  exports: [IceTypesService],
 })
 export class IceTypesModule {}
