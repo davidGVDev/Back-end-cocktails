@@ -1,10 +1,16 @@
-import { BadRequestException, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateCocktailDto } from './dto/create-cocktail.dto';
 import { UpdateCocktailDto } from './dto/update-cocktail.dto';
 import { Repository } from 'typeorm';
 import { Cocktail } from './entities/cocktail.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-
+import * as cloudinary from 'cloudinary';
 @Injectable()
 export class CocktailsService {
   private readonly logger = new Logger('CocktailsService');
@@ -22,6 +28,36 @@ export class CocktailsService {
     } catch (error) {
       this.handleDBExceptions(error);
     }
+  }
+
+  async uploadImageToCloudinary(file: Express.Multer.File): Promise<string> {
+    cloudinary.v2.config({
+      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
+    const folder = 'cocktails';
+    const publicId = file.originalname.split('.')[0] + '-' + Date.now();
+
+    return new Promise((resolve, reject) => {
+      const upload = cloudinary.v2.uploader.upload_stream(
+        {
+          folder,
+          public_id: publicId,
+          resource_type: 'image',
+        },
+        (error, result) => {
+          if (error) {
+            console.log(error);
+            reject(error);
+          } else {
+            resolve(result.secure_url);
+          }
+        }
+      );
+      upload.end(file.buffer);
+    });
   }
 
   findAll() {
@@ -58,6 +94,8 @@ export class CocktailsService {
       throw new BadRequestException(error.detail);
     }
     this.logger.error(error);
-    throw new InternalServerErrorException('Unexpected error, check server logs');
+    throw new InternalServerErrorException(
+      'Unexpected error, check server logs',
+    );
   }
 }
