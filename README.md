@@ -113,6 +113,9 @@ DB_PORT=5432
 DB_NAME=cocktails
 DB_USERNAME=postgres
 DB_PASSWORD=tu_contraseña
+CLOUDINARY_CLOUD_NAME=tu_cloud_name
+CLOUDINARY_API_KEY=tu_api_key
+CLOUDINARY_API_SECRET=tu_api_secret
 ```
 
 ## 🛠️ Tecnologías
@@ -121,6 +124,7 @@ DB_PASSWORD=tu_contraseña
 - [TypeORM](https://typeorm.io/) - ORM para TypeScript y JavaScript
 - [PostgreSQL](https://www.postgresql.org/) - Base de datos relacional
 - [Docker](https://www.docker.com/) - Contenedorización
+- [Cloudinary](https://cloudinary.com/) - Servicio de almacenamiento de imágenes
 
 ## 📡 API Endpoints
 
@@ -131,6 +135,19 @@ La API está disponible bajo el prefijo `/api`. Todos los endpoints devuelven re
 - `GET /api/cocktails` - Obtener todos los cocktails
 - `GET /api/cocktails/:id` - Obtener un cocktail por ID
 - `POST /api/cocktails` - Crear un nuevo cocktail
+  - Formato multipart/form-data
+  - Campos requeridos:
+    - name: string (único)
+    - distilled: string
+    - iceType: string
+    - garnish: string
+    - glass: string
+    - mixingMethod: string
+    - image: archivo (jpg, jpeg, png)
+  - Campos opcionales:
+    - ingredients: array de objetos {id: string, name: string}
+    - instructions: array de objetos {id: string, name: string}
+  - La imagen se almacena en Cloudinary y se devuelve la URL
 - `PATCH /api/cocktails/:id` - Actualizar un cocktail existente
 - `DELETE /api/cocktails/:id` - Eliminar un cocktail
 
